@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Policy Converter - AWS JSON to Terraform</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="icon" href="./assets/cloud.png">
+</head>
+
+<body>
+
+    <header>
+        <div class="header-title">
+            <img src="./assets/cloud.png">
+            <h2>Policy Converter</h2>
+        </div>
+        <p>Convert AWS JSON Policy to Terraform HCL Policy</p>
+    </header>
+
+    <div class="container">
+
+        <div class="textarea-container">
+
+            <div class="textarea-div">
+                <label for="aws-text">AWS JSON Policy</label>
+                <textarea id="aws-text" rows="34" cols="0" placeholder="..." spellcheck="false"></textarea>
+                <a id="copy-aws-text" href="#">
+                    <i class="fa-regular fa-copy"></i>
+                </a>
+                <a id="indent-aws-text" href="#">
+                    <i class="fa-solid fa-indent"></i> Indent
+                </a>
+                <div id="error-message" class="error"></div>
+            </div>
+
+            <div class="arrow-div">
+                <a id="convert-aws-to-tf" href="#">
+                    <i class="fa-solid fa-arrow-right fa-2x"></i>
+                </a>
+            </div>
+
+            <div class="textarea-div">
+                <label for="tf-text" >Terraform HCL Policy</label>
+                <textarea id="tf-text" rows="34" cols="0" placeholder="..." spellcheck="false"></textarea>
+                <a id="copy-tf-text" href="#">
+                    <i class="fa-regular fa-copy"></i>
+                </a>
+                <a id="tf-sintax-text" href="#">
+                    <i class="fa-regular fa-note-sticky"></i> Default
+                </a>
+            </div>
+
+        </div>
+
+    </div>
+
+    <footer>
+        <a href="https://github.com/almeida-matheus/policy-converter-aws-to-terraform">
+            <img src="./assets/github-logo.png">
+            <p>policy-converter-aws-to-terraform</p>
+        </a>
+    </footer>
+
+    <script src="./js/main.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/js/all.min.js" crossorigin="anonymous"></script>
+</body>
+
+</html>

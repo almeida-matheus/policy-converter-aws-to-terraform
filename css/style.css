@@ -1,0 +1,208 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600&display=swap');
+
+html {
+    scroll-behavior: smooth;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    min-height: 100vh;
+    background-color: #EFEFEF;
+}
+
+a {
+    text-decoration: none;
+}
+
+header {
+    font-family: 'Poppins', sans-serif;
+    text-align: center;
+    padding-top: 1rem;
+    padding-bottom: 2rem;
+}
+
+header .header-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+header .header-title img {
+    width: 45px;
+    height: auto;
+}
+
+header .header-title h2 {
+    font-weight: bold;
+}
+
+header p {
+    font-size: 0.9rem;
+}
+
+.container {
+    width: min(90vw, 1200px);
+    margin: auto;
+}
+
+.container .textarea-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    /* align-items: center; */
+
+    text-align: left;
+}
+
+.container .textarea-container .arrow-div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0rem 2rem 0rem 2rem;
+}
+
+.container .textarea-container .arrow-div a {
+    color: #f58700;
+}
+
+.container .textarea-container .textarea-div {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 100%;
+    /* height: auto; */
+    position: relative;
+}
+
+.container .textarea-container .textarea-div .fa-copy {
+    position: absolute;
+    /* right: 12px;
+    top: 34px; */
+    right: 24px;
+    top: 40px;
+    cursor: pointer;
+    display: none;
+}
+
+.container .textarea-container .textarea-div:hover .fa-copy {
+    display: block;
+}
+
+
+/* .container .textarea-container .textarea-div #indent-aws-text,
+.container .textarea-container .textarea-div #tf-sintax-text {
+    position: absolute;
+    right: 6.5px;
+    top: 1.5px;
+    cursor: pointer;
+    color: #f57200;
+    font-weight: 500;
+    font-size: 14px;
+} */
+
+.container .textarea-container .textarea-div #indent-aws-text,
+.container .textarea-container .textarea-div #tf-sintax-text {
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    cursor: pointer;
+    color: #f57200;
+    font-weight: 500;
+    border-top: #b3b3b3 2px solid;
+    border-right: #b3b3b3 2px solid;
+    border-left: #b3b3b3 2px solid;
+    /* border-radius: 1%; */
+    padding: 1px 5px 0px 5px;
+    font-size: 14px;
+}
+
+.container .textarea-container .textarea-div #indent-aws-text:focus,
+.container .textarea-container .textarea-div #tf-sintax-text:focus {
+    border: #f58700 2px solid;
+    outline: 0 !important;
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0) !important;
+}
+
+.container .textarea-container .textarea-div #indent-aws-text:hover,
+.container .textarea-container .textarea-div #tf-sintax-text:hover {
+    color: #f58700;
+}
+
+.container .textarea-container .textarea-div label {
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.container .textarea-container .textarea-div textarea {
+    padding: 5px;
+    font-family: 'Fira Code', sans-serif;
+    resize: none;
+    font-size: 13px;
+    /* border-radius: 1%; */
+    border: #b3b3b3 2px solid;
+    outline: 0 !important;
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0) !important;
+}
+
+.container .textarea-container .textarea-div textarea:focus {
+    border: #f58700 2px solid;
+    outline: 0 !important;
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0) !important;
+}
+
+.container .textarea-container .textarea-div #error-message {
+    color: red;
+    margin-top: 10px;
+    font-size: 13px;
+}
+
+footer {
+    width: 100%;
+    position: fixed;
+    /* position: relative; */
+    bottom: 0;
+    padding: 1.5rem 0rem;
+    text-align: center;
+    color: #000;
+    opacity: 0.8;
+}
+
+footer a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+
+    text-decoration: none;
+    color: #000;
+    font-weight: 600;
+    font-size: 15px;
+}
+
+footer a:hover {
+    text-decoration: none;
+    color: #000;
+}
+
+footer a img {
+    width: 15px;
+    height: auto;
+}
+
+
+@media (max-width: 800px) {
+    footer {
+        width: 100%;
+        position: unset;
+    }
+}
+
