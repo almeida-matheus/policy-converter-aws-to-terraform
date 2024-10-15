@@ -41,9 +41,9 @@ function validateJson() {
             }
         }
         if (invalidFields.length > 0)
-            throw new Error("Invalid policy fields:", invalidFields);
+            throw new Error("Invalid policy fields: ".concat(invalidFields.join('')));
 
-        errorMessage.textContent = "";
+        errorMessage.textContent = "\n";
         return policy;
     } catch (error) {
         errorMessage.textContent = error.message;
@@ -76,7 +76,10 @@ function convertJsonToHcl(policy) {
         let result = '';
         for (let principalType in principals) {
             result += `${indent(indentLevel)}principals {\n`;
-            result += `${indent(indentLevel + 1)}type = "${principalType}"\n`;
+            if (principalType.includes("amazonaws.com"))
+                result += `${indent(indentLevel + 1)}type = "Service"\n`;
+            else
+                result += `${indent(indentLevel + 1)}type = "AWS"\n`;
             if (Array.isArray(principals[principalType]) && principals[principalType].length > 1) {
                 result += `${indent(indentLevel + 1)}identifiers = [${principals[principalType].map(identifier => `\n${indent(indentLevel + 2)}"${identifier}"`).join(", ")}\n${indent(indentLevel + 1)}]\n`;
             } else {
@@ -156,7 +159,6 @@ function convertJsonToHcl(policy) {
     }
 
     function policyToHcl(policy, indentLevel = 0) {
-        console.log(policy)
         let result = 'data "aws_iam_policy_document" "policy" {\n';
         for (let statement of policy.Statement) {
             result += statementToHcl(statement, indentLevel + 1);
@@ -181,16 +183,11 @@ convertToHcl.addEventListener('click', () => {
 });
 
 IndentAwsText.addEventListener('click', () => {
-    try {
-        const policy = validateJson();
-        if (policy === undefined)
-            return
-        const formattedJSON = JSON.stringify(policy, null, 2);
-        awsTextArea.value = formattedJSON;
-    }
-    catch (error) {
-        console.error(error.message);
-    }
+    const policy = validateJson();
+    if (policy === undefined)
+        return
+    const formattedJSON = JSON.stringify(policy, null, 2);
+    awsTextArea.value = formattedJSON;
 });
 
 copyAwsText.addEventListener('click', () => {
@@ -206,3 +203,31 @@ copyTfText.addEventListener('click', () => {
     textarea.setSelectionRange(0, 99999);
     navigator.clipboard.writeText(textarea.value)
 });
+
+function updateLineNumbers(element) {
+    const initialLines = 32
+    let currentLines = initialLines;
+    if (!element.load)
+        currentLines = document.getElementById(element.id).value.split('\n').length;
+    let lineNumbers = document.getElementById(element.id.concat('-line-numbers'));
+    const totalLines = Math.max(currentLines, initialLines);
+    lineNumbers.innerHTML = '';
+    for (let i = 1; i <= totalLines; i++) {
+        const lineDiv = document.createElement('div');
+        lineDiv.textContent = i;
+        lineNumbers.appendChild(lineDiv);
+    }
+}
+
+function syncScroll(element) {
+    const textarea = document.getElementById(element.id);
+    const lineNumbers = document.getElementById(element.id.concat('-line-numbers'));
+    lineNumbers.style.transform = `translateY(-${textarea.scrollTop}px)`;
+}
+
+function handleLineNumbers() {
+    updateLineNumbers({ id: "aws-text", load: true});
+    updateLineNumbers({ id: "tf-text", load: true});
+}
+
+window.addEventListener('resize', handleLineNumbers());

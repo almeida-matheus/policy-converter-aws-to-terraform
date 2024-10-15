@@ -21,18 +21,23 @@
 
     <div class="container">
 
-        <div class="textarea-container">
+        <div class="main-container">
 
             <div class="textarea-div">
                 <label for="aws-text">AWS JSON Policy</label>
-                <textarea id="aws-text" rows="34" cols="0" placeholder="..." spellcheck="false"></textarea>
+                <div class="textarea-container">
+                    <div class="line-numbers">
+                        <div class="line-numbers-content" id="aws-text-line-numbers"></div>
+                    </div>
+                    <textarea id="aws-text" placeholder="..." spellcheck="false" oninput="updateLineNumbers(this)" onscroll="syncScroll(this)"></textarea>
+                </div>
                 <a id="copy-aws-text" href="#">
                     <i class="fa-regular fa-copy"></i>
                 </a>
                 <a id="indent-aws-text" href="#">
                     <i class="fa-solid fa-indent"></i> Indent
                 </a>
-                <div id="error-message" class="error"></div>
+                <div id="error-message" class="error">\n</div>
             </div>
 
             <div class="arrow-div">
@@ -43,11 +48,16 @@
 
             <div class="textarea-div">
                 <label for="tf-text" >Terraform HCL Policy</label>
-                <textarea id="tf-text" rows="34" cols="0" placeholder="..." spellcheck="false"></textarea>
+                <div class="textarea-container">
+                    <div class="line-numbers">
+                        <div class="line-numbers-content" id="tf-text-line-numbers"></div>
+                    </div>
+                    <textarea id="tf-text" placeholder="..." spellcheck="false" oninput="updateLineNumbers()" onscroll="syncScroll()"></textarea>
+                </div>
                 <a id="copy-tf-text" href="#">
                     <i class="fa-regular fa-copy"></i>
                 </a>
-                <a id="tf-sintax-text" href="#">
+                <a id="tf-syntax-text" href="#">
                     <i class="fa-regular fa-note-sticky"></i> Default
                 </a>
             </div>
