@@ -43,7 +43,7 @@ function validateJson() {
         if (invalidFields.length > 0)
             throw new Error("Invalid policy fields: ".concat(invalidFields.join('')));
 
-        errorMessage.textContent = "\n";
+        errorMessage.innerHTML = "</br>";
         return policy;
     } catch (error) {
         errorMessage.textContent = error.message;
@@ -205,7 +205,7 @@ copyTfText.addEventListener('click', () => {
 });
 
 function updateLineNumbers(element) {
-    const initialLines = 32
+    const initialLines = 34
     let currentLines = initialLines;
     if (!element.load)
         currentLines = document.getElementById(element.id).value.split('\n').length;
