@@ -76,7 +76,7 @@ function convertJsonToHcl(policy) {
         let result = '';
         for (let principalType in principals) {
             result += `${indent(indentLevel)}principals {\n`;
-            if (principalType.includes("amazonaws.com"))
+            if (principals[principalType].includes("amazonaws.com"))
                 result += `${indent(indentLevel + 1)}type = "Service"\n`;
             else
                 result += `${indent(indentLevel + 1)}type = "AWS"\n`;
@@ -205,7 +205,7 @@ copyTfText.addEventListener('click', () => {
 });
 
 function updateLineNumbers(element) {
-    const initialLines = 34
+    const initialLines = 100
     let currentLines = initialLines;
     if (!element.load)
         currentLines = document.getElementById(element.id).value.split('\n').length;
